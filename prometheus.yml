@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Métricas da aplicação Node.js
+  - job_name: 'cadastro-clientes'
+    static_configs:
+      - targets: ['app:3000']
+        labels:
+          application: 'cadastro-clientes'
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+
+  # Métricas do próprio Prometheus
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
